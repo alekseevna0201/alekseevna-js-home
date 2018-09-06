@@ -223,6 +223,127 @@ describe('Transformation', () => {
     expect(!!val).toBe(true);
   });
 });
+
+describe('Math objects', () => {
+  let x = 5;
+  let y = 10;
+  let z = 5.7;
+  let a = 25;
+  it('math objects PI', () => {
+    expect(Math.PI).toBe(3.141592653589793);
+  });
+  it('math objects', () => {
+    expect(Math.abs(-y)).toBe(10);
+  });
+  it('math objects', () => {
+    expect(Math.max(x,y)).toBe(10);
+  });
+  it('math objects', () => {
+    expect(Math.min(x,y)).toBe(5);
+  });
+  it('math objects', () => {
+    expect(Math.round(z)).toBe(6);
+  });
+  it('math objects', () => {
+    let z = 5.7;
+    expect(Math.ceil(z)).toBe(6);
+  });
+  it('math objects', () => {
+    expect(Math.floor(z)).toBe(5);
+  });
+  it('math objects', () => {
+    expect(Math.sqrt(a)).toBe(5);
+  });
+  it('math objects', () => {
+    expect(Math.sin(Math.PI/2)).toBe(1);
+  });
+  it('math objects', () => {
+    expect(Math.cos(Math.PI)).toBe(-1);
+  });
+  it('math objects', () => {
+    expect(Math.tan(Math.PI/2)).toBe(16331239353195370);
+  });
+});
+
+describe('String methods', () => {
+  it('string length', () => {
+    const str = 'гитара гитара';
+    expect(str.length).toBe(13);
+  });
+  it('string []', () => {
+    const str = 'гитара гитара';
+    expect(str[1]).toBe('и');
+  });
+  it('string sub', () => {
+    const str = 'гитара гитара';
+    expect(str.substr(10)).toBe('ара');
+  });
+  it('string sub2', () => {
+    const str = 'javascript';
+    expect(str.substr(5, 7)).toBe('cript');
+  });
+  it('string slice', () => {
+    const str = 'javascript';
+    expect(str.slice(3, 8)).toBe('ascri');
+  });
+  it('string split', () => {
+    let str = 'pigs';
+    expect(str.split('')).toBe["p", "i", "g", "s"];
+  });
+  it('string lower', () => {
+    const str = 'PIGS';
+    expect(str.toLowerCase()).toBe('pigs');
+  });
+  it('string index negative', () => {
+    const str = 'гитара гитара';
+    expect(str.indexOf('а', 20)).toBe(-1);
+  });
+  it('string upper', () => {
+    const str = 'гитара гитара';
+    expect(str.toUpperCase()).toBe('ГИТАРА ГИТАРА');
+  });
+  it('string index', () => {
+    const str = 'when pigs fly';
+    expect(str.indexOf('p')).toBe(5);
+  });
+  it('string replace', () => {
+    const str = 'when pigs fly';
+    expect(str.replace('when', 'wow')).toBe('wow pigs fly');
+  });
+  it('string trim', () => {
+    let S=' \n\r\t\v pigs \n\r\t\v ';
+    expect(S.trim()).toBe('pigs');
+  });
+});
 */
+describe('Array methods', () => {
+  let A = ['black', 'red', 'white'];
+  let B = ['orange', 'grey'];
+  it('array length', () => {
+    expect(A.length).toBe(3);
+  });
+  it('array concat', () => {
+    expect(A.concat(B)).toBe['black', 'red', 'white', 'orange', 'grey'];
+  });
+  it('array join', () => {
+    expect(A.join('*')).toBe('black*red*white');
+  });
+  it('array push', () => {
+    expect(A.push('pink')).toBe['black', 'red', 'white', 'pink'];
+  });
+  it('array pop', () => {
+    expect(A.pop()).toBe('pink');
+  });
+  it('array unshift', () => {
+    expect(A.unshift('green')).toBe['green','black', 'red', 'white'];
+  });
+  it('array shift', () => {
+    let A = ['black', 'red', 'white'];
+    expect(A.shift()).toBe('black');
+  });
+  it('array slice' , () => {
+    let N =['black', 'red', 'white', 'orange', 'grey'];
+    expect(N.slice(2,3)).toBe['white', 'orange'];
 
-
+  });
+});
