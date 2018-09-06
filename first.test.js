@@ -46,7 +46,6 @@ describe('Object', () => {
     expect(typeof v).toBe('object');
   });
 });
-*/
 
 describe('Math methods', () => {
   it('math-addition', () => {
@@ -110,6 +109,120 @@ describe('Math methods other', () => {
   });
 });
 
+describe('String operations', () => {
+  it('string operations', () => {
+    const x = 'kitti';
+    expect(x + 'cat').toBe('kitticat');
+  });
+  it('string operations2', () => {
+    const x = 'hot';
+    expect(x + ' dog').toBe('hot dog');
+  });
+});
 
+describe('Comparison operation', () => {
+  it('comparison operation smaller', () => {
+    let n = 'cat';
+    expect(n < 'dog').toBe(true);
+  });
+  it('comparison operation larger', () => {
+    let n = 120;
+    expect(n > 1).toBe(true);
+  });
+  it('comparison operation equal or smaller', () => {
+    let n = 5;
+    expect(n <= 5).toBe(true);
+  });
+  it('comparison operation equal or larger', () => {
+    let n = 'abc';
+    expect(n >= 'def').toBe(false);
+  });
+  it('comparison operation equal', () => {
+    const n = 120;
+    expect(n === 120).toBe(true);
+  });
+  it('comparison operation not equal', () => {
+    const n = 100;
+    expect(n !== 110).toBe(true);
+  });
+  it('comparison operation identically', () => {
+    const x = 10;
+    expect(x === 10).toBe(true);
+  });
+  it('comparison operation not identically', () => {
+    const n = 100;
+    expect(n !=== 110).toBe(true);
+  });
+});
+
+describe('Logical operations', () => {
+  it('logical operations &', () => {
+    const name = 'Masha';
+    const age = '18';
+    expect((name == 'Alena') && (age == '18')).toBe(false);
+  });
+  it('logical operations ||', () => {
+    expect((name == 'Alena') || (age == '18')).toBe(true);
+  });
+  it('logical operations !', () => {
+    expect(age = !'18').toBe(false);
+  });
+});
+
+describe('Transformation', () => {
+  it('transformation parseInt', () => {
+    const val = '-25.8734254263377';
+    expect(parseInt(val)).toBe(-25);
+  });
+  it('transformation parseFloat', () => {
+    const val = '-25.8';
+    expect(parseFloat(val)).toBe(-25.8);
+  });
+  it('transformation other', () => {
+    const val = '44';
+    expect(val * 1).toBe(44);
+  });
+  it('transformation Number', () => {
+    const val = '22';
+    expect(Number(val)).toBe(22);
+  });
+  it('transformation Number negative', () => {
+    const val = '30px';
+    expect(Number(val)).toBe(NaN);
+  });
+  it('transformation isNaN', () => {
+    const val = '100';
+    expect(isNaN(val)).toBe(false);
+  });
+  it('transformation isFinite', () => {
+    const val = '100';
+    expect(isFinite(val)).toBe(true);
+  });
+  it('transformation String', () => {
+    const val = 300;
+    expect(String(val)).toBe('300');
+  });
+  it('transformation toString', () => {
+    const x = -20;
+    expect(x.toString()).toBe('-20');
+  });
+  it('transformation + empty string', () => {
+    const val = 100;
+    expect(val + '').toBe('100');
+  });
+  it('transformation Boolean', () => {
+    const val = 300;
+    expect(Boolean(val)).toBe(true);
+  });
+  it('transformation Boolean negative', () => {
+    const val = 0;
+    expect(Boolean(val)).toBe(false);
+  });
+  it('transformation !!', () => {
+    const val = '100';
+    expect(!!val).toBe(true);
+  });
+});
+*/
 
 
