@@ -1,4 +1,3 @@
-/*
 describe('String methods', () => {
   it('String', () => {
     const str = 'abc';
@@ -8,14 +7,19 @@ describe('String methods', () => {
 
 describe('Number methods', () => {
   it('Number', () => {
-    const n = 120;
+    let n = 120;
     expect(n * 2).toBe(240);
   });
 });
 
 describe('Boolean methods', () => {
   it('Boolean', () => {
-    expect(NaN == NaN).toBe(false);
+    let  x = NaN;
+    expect(x == NaN).toBe(false);
+  });
+  it('Boolean', () => {
+    let x = NaN;
+    expect(x !== NaN).toBe(true);
   });
 });
 
@@ -35,8 +39,15 @@ describe('Undefined', () => {
 
 describe('Undefined', () => {
   it('undefined', () => {
+    let x;
+    expect(x).toBe(undefined);
+  });
+});
+
+describe('Undefined', () => {
+  it('undefined', () => {
     const x = undefined;
-    expect(x !== null).toBe(false);
+    expect(x !== null).toBe(true);
   });
 });
 
@@ -44,6 +55,13 @@ describe('Object', () => {
   it('object', () => {
     const v = {};
     expect(typeof v).toBe('object');
+  });
+});
+
+describe('Typeof', () => {
+  it('typeof', () => {
+    const v = 100;
+    expect(typeof 100).toBe('number');
   });
 });
 
@@ -125,25 +143,45 @@ describe('Comparison operation', () => {
     let n = 'cat';
     expect(n < 'dog').toBe(true);
   });
+  it('comparison operation smaller negative', () => {
+    let n = 'auto';
+    expect(n > 'bmw').toBe(false);
+  });
   it('comparison operation larger', () => {
     let n = 120;
     expect(n > 1).toBe(true);
+  });
+  it('comparison operation larger', () => {
+    let n = 120;
+    expect(n > 200).toBe(false);
   });
   it('comparison operation equal or smaller', () => {
     let n = 5;
     expect(n <= 5).toBe(true);
   });
-  it('comparison operation equal or larger', () => {
+  it('comparison operation equal or larger negative', () => {
     let n = 'abc';
     expect(n >= 'def').toBe(false);
+  });
+  it('comparison operation equal or larger', () => {
+    let n = 'abc';
+    expect(n >= 'abc').toBe(true);
   });
   it('comparison operation equal', () => {
     const n = 120;
     expect(n === 120).toBe(true);
   });
+  it('comparison operation equal negative', () => {
+    const n = 5;
+    expect(n === 120).toBe(false);
+  });
   it('comparison operation not equal', () => {
     const n = 100;
     expect(n !== 110).toBe(true);
+  });
+  it('comparison operation not equal negative', () => {
+    const n = 100;
+    expect(n !== 100).toBe(false);
   });
   it('comparison operation identically', () => {
     const x = 10;
@@ -151,7 +189,7 @@ describe('Comparison operation', () => {
   });
   it('comparison operation not identically', () => {
     const n = 100;
-    expect(n !=== 110).toBe(true);
+    expect(n !== 110).toBe(true);
   });
 });
 
@@ -162,7 +200,9 @@ describe('Logical operations', () => {
     expect((name == 'Alena') && (age == '18')).toBe(false);
   });
   it('logical operations ||', () => {
-    expect((name == 'Alena') || (age == '18')).toBe(true);
+    const name = 'Masha';
+    const age = '18';
+    expect((name == 'Dariya') || (age == '18')).toBe(true);
   });
   it('logical operations !', () => {
     expect(age = !'18').toBe(false);
@@ -315,7 +355,7 @@ describe('String methods', () => {
     expect(S.trim()).toBe('pigs');
   });
 });
-*/
+
 describe('Array methods', () => {
   let A = ['black', 'red', 'white'];
   let B = ['orange', 'grey'];
@@ -345,5 +385,34 @@ describe('Array methods', () => {
     let N =['black', 'red', 'white', 'orange', 'grey'];
     expect(N.slice(2,3)).toBe['white', 'orange'];
 
+  });
+});
+
+describe('Array methods', () => {
+  it('array splice', () => {
+    let N = ['l', 'i', 'u', 'b', 'o', 'u'];
+    expect(N.splice(4, 2)).toBe['o', 'u'];
+  });
+});
+
+describe('Array reverse', () => {
+  it('array reverse', () => {
+    let X =['A', 'B', 'C'];
+    expect(X.reverse()).toBe['C', 'B', 'A'];
+  });
+});
+
+describe('Array sort', () => {
+  it('array sort', () => {
+    let X = ['c', 'b', 'a'];
+    expect(X.sort()).toBe['a', 'b', 'c'];
+  });
+});
+
+describe('Array sort function', () => {
+  it('array sort', () => {
+    let Y = ['110', '100', '200'];
+    expect(Y.sort(function CompareX(A,B) {return B - A;
+    })).toBe['100', '110', '200'];
   });
 });
