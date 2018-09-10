@@ -2,17 +2,17 @@
 
 var lastName = prompt('Введите вашу фамилию');
 for (var i = 0; i < lastName.length - 1; i++) {
-  if (typeof lastName[i] !== 'string') continue;
+  if (typeof lastName[i] !== 'string' || lastName == 'undefined' || lastName.length === 0 || lastName === "" || !/[^\s]/.test(lastName)) continue;
   lastName = prompt('Вы можете ввести только буквы');
 }
 var firstName = prompt('Введите ваше имя');
 for (var i = 0; i < firstName.length - 1; i++) {
-  if (typeof firstName[i] !== 'string') break;
+  if (typeof firstName[i] !== 'string' || firstNameName == 'undefined' || firstName.length === 0 || firstName === "" || !/[^\s]/.test(firstName)) break;
   firstName = prompt('Вы можете ввести только буквы');
 }
 var patronymic = prompt('Введите ваше отчество');
 for (var i = 0; i < patronymic.length - 1; i++) {
-  if((/^\s*$/).test(patronymic)) {
+  if((/^\s*$/).test(patronymic) || typeof patronymic[i] !== 'string' || patronymic == 'undefined' || patronymic.length === 0 || patronymic === "" || !/[^\s]/.test(patronymic)) {
     patronymic = prompt('попробуйте ещё раз')
   }
   else {
