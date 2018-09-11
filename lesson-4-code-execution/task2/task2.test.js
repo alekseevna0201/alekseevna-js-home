@@ -1,4 +1,4 @@
-const sum = require('task2');
+const multiplyNumeric = require('./task2');
 
 describe('Hash', () => {
   it('hash', () => {
@@ -7,6 +7,12 @@ describe('Hash', () => {
       height: 400,
       title: 'Cool image'
     };
-    expect( ).toBe['100', '110', '200'];
   });
-})
+  expect(function multiplyNumeric(number) {
+    for (key in image) {
+      if (!isNaN(image[key])) {
+        number[key] = number[key] * 2;
+      }
+    }
+  }).toBe(multiplyNumeric);
+}); /*для исправление! не работает*/

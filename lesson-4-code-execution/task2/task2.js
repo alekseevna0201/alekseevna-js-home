@@ -6,6 +6,13 @@ let image = {
 
 function multiplyNumeric(number) {
   for (key in image) {
-    if
-  }
+    if (!isNaN(image[key])) {
+      number[key] = number[key] * 2;
     }
+  }
+}
+
+multiplyNumeric(image);
+console.log(image);
+
+module.exports = multiplyNumeric;
