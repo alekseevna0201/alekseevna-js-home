@@ -5,6 +5,13 @@ describe('String methods', () => {
   });
 });
 
+describe('String methods', () => {
+  it('String', () => {
+    const str = 'abc';
+    expect(str.toLocaleLowerCase()).toBe('abc');
+  });
+});
+
 describe('Number methods', () => {
   it('Number', () => {
     let n = 120;
@@ -15,7 +22,7 @@ describe('Number methods', () => {
 describe('Boolean methods', () => {
   it('Boolean', () => {
     let  x = NaN;
-    expect(x == NaN).toBe(false);
+    expect(x === NaN).toBe(false);
   });
   it('Boolean', () => {
     let x = NaN;
@@ -356,7 +363,7 @@ describe('String methods', () => {
   });
 });
 
-describe('Array methods', () => {
+describe('Array methods',  () => {
   let A = ['black', 'red', 'white'];
   let B = ['orange', 'grey'];
   it('array length', () => {
@@ -383,8 +390,7 @@ describe('Array methods', () => {
   });
   it('array slice' , () => {
     let N =['black', 'red', 'white', 'orange', 'grey'];
-    expect(N.slice(2,3)).toBe['white', 'orange'];
-
+    expect(N.slice(2,3)).toBe['white', 'orange'];d
   });
 });
 
@@ -412,7 +418,6 @@ describe('Array sort', () => {
 describe('Array sort function', () => {
   it('array sort', () => {
     let Y = ['110', '100', '200'];
-    expect(Y.sort(function CompareX(A,B) {return B - A;
-    })).toBe['100', '110', '200'];
+    expect(Y.sort(function CompareX(A,B) {return B - A;})).toBe['100', '110', '200'];
   });
 });
