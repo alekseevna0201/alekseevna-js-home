@@ -6,4 +6,6 @@ let tasksCompleted = {
 };
 for (value in tasksCompleted);
 bestWorker = (Math.max(tasksCompleted[value]));
-console.log(value);
+console.log(bestWorker);
+
+module.exports = bestWorker;
