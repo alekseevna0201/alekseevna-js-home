@@ -9,7 +9,7 @@ while (true) {
 }
 let secondNumber = prompt('Введите второе число');
 while (true) {
-  let second = parseInt(firstNumber);
+  let second = parseInt(secondNumber);
   if (!isNaN(second) || (second === "") || (second == null)) {
     break;
   }
@@ -17,7 +17,7 @@ while (true) {
 }
 let thirdNumber = prompt('Введите третье число');
 while (true) {
-  let third = parseInt(firstNumber);
+  let third = parseInt(thirdNumber);
   if (!isNaN(third) || (third === "") || (third == null)) {
     break;
   }
