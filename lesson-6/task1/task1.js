@@ -60,3 +60,9 @@ if (averageTipMark() > averageTipJohn()) {
 } else {
   console.log('Family of John very rich and kind')
 }
+
+console.log(averageTipJohn());
+console.log(averageTipMark());
+
+module.exports = averageTipJohn();
+module.exports = averageTipMark();
