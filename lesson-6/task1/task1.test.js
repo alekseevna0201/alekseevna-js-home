@@ -1,6 +1,5 @@
-var tipCalculator = require('./task1');
-var tipCalculatorMark = require('./task1');
-var averageTipJohn = require('./task1');
+var tipsMark = require('./task1');
+var allTips = require('./task1');
 var averageTipMark = require('./task1');
 
 describe('Function Calculating average', () => {
@@ -9,8 +8,15 @@ describe('Function Calculating average', () => {
   });
 });
 
-describe('Function calculating tips of Mark', () => {
-  it('calculate tips', () => {
-  expect(averageTipJohn).toBe(17.6);
+describe('Calculate tips', () => {
+  it('To calculate tips', () => {
+  expect(tipsMark).toBe[15, 93, 22, 9];
   });
 });
+
+describe('Calculate tips', () => {
+  it('To calculate tips', () => {
+  expect(allTips).toBe[18, 12, 26, 27, 8];
+  });
+});
+

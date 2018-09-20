@@ -1,7 +1,7 @@
 'use strict';
 
 var billsJohn = {
-  billValue: [124, 48, 268, 180, 42]
+  billValue: [124, 80, 268, 180, 42]
 };
 
 var allTips = [];
@@ -63,6 +63,8 @@ if (averageTipMark() > averageTipJohn()) {
 
 console.log(averageTipJohn());
 console.log(averageTipMark());
+console.log(tipsMark);
+console.log(allTips);
 
 module.exports = averageTipJohn();
 module.exports = averageTipMark();
