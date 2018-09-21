@@ -4,10 +4,10 @@ var billsJohn = {
   billValue: [124, 80, 268, 180, 42]
 };
 
-var allTips = [];
-var sumWithTips = [];
+var allTips = []; //тут будут чаевые, массив
+var sumWithTips = []; //тут будут суммы с чаевыми (Джон)
 
-function tipCalculator(bill) {
+function tipCalculator(bill) { // функция определяет какой именно размер чаевой для счета должен быть
   for (var i = 0; i < billsJohn.billValue; i++)
     var percentage;
     if (bill < 50) {
@@ -19,13 +19,13 @@ function tipCalculator(bill) {
     }
     return parseInt(percentage * bill);
 }
-
+// добавляем результаты в массивы
 allTips.push(tipCalculator(billsJohn.billValue[0]), tipCalculator(billsJohn.billValue[1]), tipCalculator(billsJohn.billValue[2]),
   tipCalculator(billsJohn.billValue[3]), tipCalculator(billsJohn.billValue[4]));
 
 sumWithTips.push(billsJohn.billValue[0] + allTips[0], billsJohn.billValue[1] + allTips[1],
   billsJohn.billValue[2] + allTips[2],billsJohn.billValue[3] + allTips[3],billsJohn.billValue[4] + allTips[4]);
-
+//ищем средний размер чаевых Джона
 var averageTipJohn = function () {
   return (allTips[0] + allTips[1]+ allTips[2]+ allTips[3]+ allTips[4]) / allTips.length;
 };
@@ -55,16 +55,11 @@ function tipCalculatorMark(bill) {
 tipsMark.push(tipCalculatorMark(billsMark.billValue[0]), tipCalculatorMark(billsMark.billValue[1]),
   tipCalculatorMark(billsMark.billValue[2]), tipCalculatorMark(billsMark.billValue[3]));
 
-if (averageTipMark() > averageTipJohn()) {
+if (averageTipMark() > averageTipJohn()) { //сравниваем средние чаевые
   console.log('Family of Mark very rich and kind')
 } else {
   console.log('Family of John very rich and kind')
 }
 
-console.log(averageTipJohn());
-console.log(averageTipMark());
-console.log(tipsMark);
-console.log(allTips);
-
-module.exports = averageTipJohn();
-module.exports = averageTipMark();
+module.exports = averageTipJohn;
+module.exports = averageTipMark;
