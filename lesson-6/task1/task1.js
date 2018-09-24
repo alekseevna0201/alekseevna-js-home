@@ -4,7 +4,7 @@ var billsJohn = {
   billValue: [124, 80, 268, 180, 42]
 };
 
-var allTips = []; //тут будут чаевые, массив
+var tipsJohn = []; //тут будут чаевые, массив
 var sumWithTips = []; //тут будут суммы с чаевыми (Джон)
 
 function tipCalculator(bill) { // функция определяет какой именно размер чаевой для счета должен быть
@@ -20,14 +20,14 @@ function tipCalculator(bill) { // функция определяет какой
     return parseInt(percentage * bill);
 }
 // добавляем результаты в массивы
-allTips.push(tipCalculator(billsJohn.billValue[0]), tipCalculator(billsJohn.billValue[1]), tipCalculator(billsJohn.billValue[2]),
+tipsJohn.push(tipCalculator(billsJohn.billValue[0]), tipCalculator(billsJohn.billValue[1]), tipCalculator(billsJohn.billValue[2]),
   tipCalculator(billsJohn.billValue[3]), tipCalculator(billsJohn.billValue[4]));
 
-sumWithTips.push(billsJohn.billValue[0] + allTips[0], billsJohn.billValue[1] + allTips[1],
-  billsJohn.billValue[2] + allTips[2],billsJohn.billValue[3] + allTips[3],billsJohn.billValue[4] + allTips[4]);
+sumWithTips.push(billsJohn.billValue[0] + tipsJohn[0], billsJohn.billValue[1] + tipsJohn[1],
+  billsJohn.billValue[2] + tipsJohn[2],billsJohn.billValue[3] + tipsJohn[3],billsJohn.billValue[4] + tipsJohn[4]);
 //ищем средний размер чаевых Джона
-var averageTipJohn = function () {
-  return (allTips[0] + allTips[1]+ allTips[2]+ allTips[3]+ allTips[4]) / allTips.length;
+function averageTipJohn() {
+  return (tipsJohn[0] + tipsJohn[1]+ tipsJohn[2]+ tipsJohn[3]+ tipsJohn[4]) / tipsJohn.length;
 };
 
 var billsMark = {
@@ -35,7 +35,7 @@ var billsMark = {
 };
 
 var tipsMark = [];
-var averageTipMark = function () {
+function averageTipMark() {
   return (tipsMark[0] + tipsMark[1] + tipsMark[2] + tipsMark[3]) / tipsMark.length;
 };
 
@@ -61,5 +61,9 @@ if (averageTipMark() > averageTipJohn()) { //сравниваем средние
   console.log('Family of John very rich and kind')
 }
 
-module.exports = averageTipJohn;
-module.exports = averageTipMark;
+module.exports.averageTipsMark = averageTipMark;
+module.exports.averageTipsJohn = averageTipJohn;
+module.exports.tipCalculatorMark = tipCalculatorMark;
+module.exports.tipCalculator = tipCalculator;
+module.exports.tipsMark = tipsMark;
+module.exports.tipsJohn = tipsJohn;
