@@ -1,7 +1,4 @@
-var averageTipMark = require('./task1');
-var averageTipJohn = require('./task1');
-var tipCalculatorMark = require('./task1');
-var tipCalculator = require('./task1');
+
 
 describe('Calculate tips', () => {
   it('John tips', () => {
