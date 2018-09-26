@@ -1,11 +1,14 @@
-let tasksCompleted = {
-  'Anna': 15,
-  'Serg': 35,
-  'Elena': 1,
-  'Anton': 99
-};
-for (value in tasksCompleted);
-bestWorker = (Math.max(tasksCompleted[value]));
-console.log(bestWorker);
+function getBest() {
+  let tasksCompleted = {
+    'Anna': 15,
+    'Serg': 35,
+    'Elena': 1,
+    'Anton': 99
+  };
+  for (value in tasksCompleted);
+  bestWorker = (Math.max(tasksCompleted[value]));
+}
 
-module.exports = bestWorker;
+console.log(getBest());
+
+module.exports = getBest;

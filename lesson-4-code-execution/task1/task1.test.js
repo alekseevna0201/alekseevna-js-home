@@ -1,14 +1,8 @@
-const bestWorker = require('./task1');
+const getBest = require('./task1');
 
-describe('Math.max', () => {
-  it('max value', () => {
-    let tasksCompleted = {
-      'Anna': 15,
-      'Serg': 35,
-      'Elena': 1,
-      'Anton': 99
-    };
+describe('Get best employer', () => {
+  it('get best employer who has max value issues', () => {
     let result = Math.max(tasksCompleted[value]);
-    expect(result).toBe(99);
+    expect(result).toBe('Anton');
   });
 });
