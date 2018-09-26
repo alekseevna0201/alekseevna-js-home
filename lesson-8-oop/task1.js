@@ -1,29 +1,34 @@
 'use strict';
 
-var questions = {
-  1: 'В каком году родился Виктор Цой?',
-  2: 'В каком году убили Кеннеди?',
-  3: 'На какую цифру начинается число Пи?',
-  4: 'Какой сейчас год?'
-}
-/*
-var allAnswers = {
-
+var mainQuestions = {
+  coi: {
+    question:'В каком году родился Виктор Цой?',
+    rightAnswer: '1962',
+    variantsAnswer: [1962, 1963, 1965]
+  },
+  year: {
+    question: 'Какой сейчас год?',
+    rightAnswer: '2018' //добавить варианты ответов
+  }
 };
-*/
-function Question(question, rightAnswer) {
-  this.question = prompt(question);
-  this.answer = [1, 2, 3, 4];
+
+function Question(question, variantsAnswer, rightAnswer) { //функцию додумать
+  this.question = prompt(question  + variantsAnswer); //придумать как записать ответ пользователя
+  this.variantsAnswer = {
+    firstVariant: '1',
+    secondVariant: '2',
+    thirdVariant: '3'
+  };
   this.rightAnswer = rightAnswer;
-  if (question === rightAnswer) {
+  if (this.question === this.rightAnswer) {
     console.log('Это правильный ответ!')
-  } else if (question !== rightAnswer) {
+  } else if (this.question !== this.rightAnswer) {
     console.log('Это неправильный ответ! Вы - самое слабое звено!')
   } else {
     console.log('Введите ваш ответ корректно')
   }
 }
 
-var question = new Question (questions[1] + '\n  1.1962  \n  2.1963  \n  3.1964  \n  4.1965' , 1962);
+var quiz = new Question (mainQuestions.coi.question, mainQuestions.coi.variantsAnswer, mainQuestions.coi.rightAnswer);
 
 Question();
