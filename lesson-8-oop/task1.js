@@ -18,15 +18,15 @@ var mainQuestions = {
   }
 };
 
-function Question(question, variantsAnswer, rightAnswer) { //функцию додумать
+function Question(question, variantsAnswer, rightAnswer) {
   this.question = prompt(question + '\n' + variantsAnswer[0]+ '\n' + variantsAnswer[1]+ '\n'  + variantsAnswer[2]);
   this.rightAnswer = rightAnswer;
   if (this.question === this.rightAnswer) {
     console.log('Это правильный ответ!')
   } else if (this.question !== this.rightAnswer) {
     console.log('Это неправильный ответ! Вы - самое слабое звено!')
-  } else if ((question === "") || (question == null)) {
-    console.log('Введите ваш ответ корректно')
+  } else if (isNaN(this.question)) {
+    prompt('Введите Ваш ответ корректно')
   }
 }
 
@@ -34,3 +34,13 @@ var game = new Question(mainQuestions.Coi.question, mainQuestions.Coi.variantsAn
 var gameSecond = new Question(mainQuestions.year.question, mainQuestions.year.variantsAnswer, mainQuestions.year.rightAnswer);
 var gameThird = new Question(mainQuestions.Kennedy.question, mainQuestions.Kennedy.variantsAnswer, mainQuestions.Kennedy.rightAnswer);
 
+var arrayQuestions = [];
+arrayQuestions.push(game, gameSecond, gameThird);
+
+function getRandomQuestion(arr) {
+    var randomQuestion = Math.floor(Math.random(arrayQuestions) * 3);
+    return randomQuestion;
+}
+
+var quiz = getRandomQuestion(arrayQuestions);
+console.log(quiz);
