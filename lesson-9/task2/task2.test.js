@@ -1,0 +1,1 @@
+var isPal = require('./task2');describe('Test palindromes', () = > {  it('check palindromes', () => {  var txt = isPal('анна');  expect(txt).toBe(true);  });});
