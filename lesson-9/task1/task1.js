@@ -1,6 +1,5 @@
 'use strict';
 
-
   (function () {
 
     function Question(question, answers, correct) {
@@ -20,7 +19,7 @@
     Question.prototype.checkAnswer = function (ans) {
       if (ans === this.correct) {
         console.log('Correct answer!');
-
+        points+=1;
       } else {
         console.log('Wrong answer. Try again :)')
       }
@@ -38,20 +37,19 @@
       ['Boring', 'Hard', 'Fun', 'Tediuos'],
       2);
 
-
     var questions = [q1, q2, q3];
-    var n = Math.floor(Math.random() * questions.length);
+    var points = 0;
 
-function f() {
-  var answer = parseInt(prompt('Please select the correct answer.'));
-  while (answer !== 'exit') {
-    questions[n].displayQuestion();
-    questions[n].checkAnswer(answer);
-  }
-}
+    function goOnGame() {
+      var n = Math.floor(Math.random() * questions.length);
+      questions[n].displayQuestion();
+      var answer = prompt("choose your answer:");
+      if (answer !== "exit") {
+        questions[n].checkAnswer(parseInt(answer));
+        goOnGame();
+      }
+    }
 
-f();
+    goOnGame();
+    alert('You won ' + points + ' points');
 })();
-
-
-

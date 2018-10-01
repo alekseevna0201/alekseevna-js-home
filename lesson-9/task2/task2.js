@@ -1,5 +1,4 @@
 'use strict';
-
 var text = 'анна';
 
 function  isPal(text) {
@@ -14,5 +13,6 @@ function  isPal(text) {
     return false;
   }
 }
+isPal(text);
 
 module.exports = isPal;
