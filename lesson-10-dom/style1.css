@@ -1,0 +1,16 @@
+.text-area {
+  position: absolute;
+  width: 450px;
+  height: 300px;
+  left: 20%;
+  top: 20%;
+  background: lightcoral;
+}
+
+button {
+  width: 200px;
+  height: 150px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
