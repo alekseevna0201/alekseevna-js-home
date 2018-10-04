@@ -1,14 +1,21 @@
-function getBest() {
+'use strict';
+
+function getBest(obj) {
   let tasksCompleted = {
     'Anna': 15,
     'Serg': 35,
     'Elena': 1,
     'Anton': 99
   };
-  for (value in tasksCompleted);
-  bestWorker = (Math.max(tasksCompleted[value]));
+  let tasks = 0;
+  let bestWorker = '';
+  for (let person in obj) {
+    if (obj[person] > tasks) {
+      tasks = obj[person];
+      bestWorker = person;
+    }
+  }
+  return bestWorker;
 }
-
-console.log(getBest());
 
 module.exports = getBest;

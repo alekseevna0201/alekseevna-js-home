@@ -1,18 +1,18 @@
-let image = {
-  width: 100,
-  height: 400,
-  title: 'Cool image'
-};
+'use strict';
 
-function multiplyNumeric(number) {
-  for (key in image) {
+let multiplyFunction = function multiplyNumeric(obj) {
+  let image = {
+    width: 100,
+    height: 400,
+    title: 'Cool image'
+  };
+  for (let key in image) {
     if (!isNaN(image[key])) {
-      number[key] = number[key] * 2;
+      obj[key] = obj[key] * 2;
+    } else {
+      return key;
     }
   }
-}
+};
 
-multiplyNumeric(image);
-console.log(image);
-
-module.exports = multiplyNumeric;
+module.exports = multiplyFunction;
