@@ -76,9 +76,10 @@ function showAllDrinks() {
   }
 }
 
-document.querySelector("button").addEventListener('click', function () {
-  document.querySelector('.text-area').textContent = 'hjgrtd';
-});
+document.querySelector('.add-drink').addEventListener('click', addDrink);
+document.querySelector('.get-drink').addEventListener('click', getDrink);
+document.querySelector('.delete-drink').addEventListener('click', deleteDrink);
+document.querySelector('.all-drinks').addEventListener('click', showAllDrinks);
 
 
 
