@@ -51,8 +51,6 @@ function getDrink () {
   }
 }
 
-getDrink();
-
 function addDrink (){
   var key = prompt('Введите название напитка');
   var alcohol = prompt('Этот напиток алкогольный?');
@@ -78,7 +76,9 @@ function showAllDrinks() {
   }
 }
 
-
+document.querySelector("button").addEventListener('click', function () {
+  document.querySelector('.text-area').textContent = 'hjgrtd';
+});
 
 
 
