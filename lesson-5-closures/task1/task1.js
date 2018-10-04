@@ -27,7 +27,7 @@ function getBroad(lines, sizeString, space, cell) {
         result += space;
       }
     }
-    result += '\n'; // отработал цикл для символов в строке и происходит перенос строки
+    result += '\n';
   }
 }
 
