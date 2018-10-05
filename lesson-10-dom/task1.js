@@ -24,23 +24,16 @@ function HashStorage() {
 
   //getKeys() возвращает массив ключей
   this.getKeys = function(){
-    var keys = [];
-    for (var i in this.hash)
-      keys.push(i);
-    return keys;
+    return Object.keys(hash);
   }
 }
 
 var DrinkStorage = new HashStorage();
+
 DrinkStorage.addValue('Самогон', ['очень алкогольный', 'нужен самогонный аппарат']);
 DrinkStorage.addValue('Кофе', ['безалкогольный', 'просто залей водой']);
 DrinkStorage.addValue('Мохито', ['слабоалкогольный', 'мята, лайм, вода, ром, много колотого льда']);
 DrinkStorage.addValue('Морс', ['безалкогольный', 'клюкву варить и перетирать и можно сахар']);
-
-/*
-DrinkStorage.addValue(prompt('Введите название напитка'), [prompt('Он алкогольный?'), prompt('Рецепт?')]);
- */
-console.log(DrinkStorage.hash);
 
 function getDrink () {
   var key = prompt('Введите название напитка');
@@ -79,24 +72,11 @@ function showAllDrinks() {
 document.querySelector('.add-drink').addEventListener('click', addDrink);
 document.querySelector('.get-drink').addEventListener('click', getDrink);
 document.querySelector('.delete-drink').addEventListener('click', deleteDrink);
-document.querySelector('.all-drinks').addEventListener('click', showAllDrinks);
+document.querySelector('.all-drinks').addEventListener('click', showText);
+document.querySelector('.text-area').style.display = 'none';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function showText() {
+  var nameHash = DrinkStorage.hash[name];
+  document.querySelector('.text-area').style.display = 'block';
+  document.querySelector('.text-area').textContent = 'Кофе'; //не получилсь вывести ключ-значение хэша
+}
