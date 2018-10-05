@@ -2,17 +2,15 @@
 
 function HashStorage() {
   this.hash = {};
-  //addValue(key, value) сохраняет указанное значение под указанным ключом
+
   this.addValue = function(key,value) {
     this.hash[key] = value;
   };
 
-  //getValue(key) возвращает значение или undefined
   this.getValue = function(key) {
     return this.hash[key];
   };
 
-  //deleteValue(key) удаляет ключ
   this.deleteValue = function(key) {
     if (key in this.hash) {
       delete this.hash[key];
@@ -22,7 +20,6 @@ function HashStorage() {
       return false;
   };
 
-  //getKeys() возвращает массив ключей
   this.getKeys = function(){
     return Object.keys(hash);
   }
@@ -78,5 +75,5 @@ document.querySelector('.text-area').style.display = 'none';
 function showText() {
   var nameHash = DrinkStorage.hash[name];
   document.querySelector('.text-area').style.display = 'block';
-  document.querySelector('.text-area').textContent = 'Кофе'; //не получилсь вывести ключ-значение хэша
+  document.querySelector('.text-area').textContent = DrinkStorage.hash;
 }
