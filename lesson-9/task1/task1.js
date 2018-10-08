@@ -19,7 +19,6 @@
     Question.prototype.checkAnswer = function (ans) {
       if (ans === this.correct) {
         console.log('Correct answer!');
-        points+=1;
       } else {
         console.log('Wrong answer. Try again :)')
       }
@@ -38,7 +37,18 @@
       2);
 
     var questions = [q1, q2, q3];
-    var points = 0;
+
+    function score() {
+      var sc = 0;
+      return function(correct) {
+        if (correct) {
+          sc++;
+        }
+        return sc;
+      }
+    }
+
+    var points = score();
 
     function goOnGame() {
       var n = Math.floor(Math.random() * questions.length);
