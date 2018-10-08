@@ -1,30 +1,5 @@
 'use strict';
 
-function HashStorage() {
-  this.hash = {};
-
-  this.addValue = function(key,value) {
-    this.hash[key] = value;
-  };
-
-  this.getValue = function(key) {
-    return this.hash[key];
-  };
-
-  this.deleteValue = function(key) {
-    if (key in this.hash) {
-      delete this.hash[key];
-      return true;
-    }
-    else
-      return false;
-  };
-
-  this.getKeys = function(){
-    return Object.keys(hash);
-  }
-}
-
 var DrinkStorage = new HashStorage();
 
 DrinkStorage.addValue('Самогон', ['очень алкогольный', 'нужен самогонный аппарат']);
