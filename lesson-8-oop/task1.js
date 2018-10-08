@@ -19,7 +19,7 @@ var mainQuestions = {
 };
 
 function Question(question, variantsAnswer, rightAnswer) {
-  this.question = prompt(question + '\n' + variantsAnswer[0]+ '\n' + variantsAnswer[1]+ '\n'  + variantsAnswer[2]);
+  this.question = ask;
   this.rightAnswer = rightAnswer;
   if (this.question === this.rightAnswer) {
     console.log('Это правильный ответ!')
@@ -30,12 +30,12 @@ function Question(question, variantsAnswer, rightAnswer) {
   }
 }
 
+var ask = prompt(mainQuestions.question + '\n' + mainQuestions.variantsAnswer+ '\n' + mainQuestions.variantsAnswer+ '\n'  + mainQuestions.variantsAnswer);
 var game = new Question(mainQuestions.Coi.question, mainQuestions.Coi.variantsAnswer, mainQuestions.Coi.rightAnswer);
 var gameSecond = new Question(mainQuestions.year.question, mainQuestions.year.variantsAnswer, mainQuestions.year.rightAnswer);
 var gameThird = new Question(mainQuestions.Kennedy.question, mainQuestions.Kennedy.variantsAnswer, mainQuestions.Kennedy.rightAnswer);
 
-var arrayQuestions = [];
-arrayQuestions.push(game, gameSecond, gameThird);
+var arrayQuestions = [game, gameSecond, gameThird];
 
 function getRandomQuestion(arr) {
     var randomQuestion = Math.floor(Math.random(arrayQuestions) * 3);
