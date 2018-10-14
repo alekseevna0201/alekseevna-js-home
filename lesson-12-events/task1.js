@@ -90,7 +90,6 @@ var DragManager = new function() {
   }
 
   function findDroppable(event) {
-    
     var elem = document.elementFromPoint(event.clientX, event.clientY);
     return elem.closest('img');
   }
