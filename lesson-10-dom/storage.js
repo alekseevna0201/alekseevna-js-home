@@ -1,6 +1,10 @@
 function HashStorage() {
   this.hash = {};
 
+  this.Reset = function () {
+    hash = {};
+  };
+
   this.addValue = function(key,value) {
     this.hash[key] = value;
   };
@@ -10,7 +14,7 @@ function HashStorage() {
   };
 
   this.deleteValue = function(key) {
-    delete this.hash[key];
+    return delete this.hash[key];
   };
 
   this.getKeys = function(){
