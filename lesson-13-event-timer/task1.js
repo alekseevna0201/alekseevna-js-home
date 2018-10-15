@@ -1,69 +1,71 @@
 'use strict';
+function createClock() {
+  var div = document.createElement('div');
+  div.style.background = "-webkit-radial-gradient(black, white)";
+  div.className = "clock";
+  div.style.position ='absolute';
+  div.style.width ='400px';
+  div.style.height ='400px';
+  div.style.borderRadius ='50%';
+  div.style.margin ='0';
 
-var div = document.createElement('div');
-div.style.background = "-webkit-radial-gradient(black, white)";
-div.className = "clock";
-div.style.position ='absolute';
-div.style.width ='400px';
-div.style.height ='400px';
-div.style.borderRadius ='50%';
-div.style.margin ='0';
+  document.body.insertBefore(div, document.body.firstChild);
 
-document.body.insertBefore(div, document.body.firstChild);
+  var center = document.createElement('div');
+  center.className = "center";
+  center.style.position ='absolute';
+  center.style.background ='black';
+  center.style.width ='20px';
+  center.style.height ='20px';
+  center.style.left ='190px';
+  center.style.right ='0';
+  center.style.top ='190px';
+  center.style.bottom ='0';
+  center.style.borderRadius ='50%';
+  div.appendChild(center);
 
-var center = document.createElement('div');
-center.className = "center";
-center.style.position ='absolute';
-center.style.background ='black';
-center.style.width ='20px';
-center.style.height ='20px';
-center.style.left ='190px';
-center.style.right ='0';
-center.style.top ='190px';
-center.style.bottom ='0';
-center.style.borderRadius ='50%';
-div.appendChild(center);
+  var hourHand = document.createElement('div');
+  hourHand.className = "hour";
+  hourHand.style.position ='absolute';
+  hourHand.style.background ='#DAA520';
+  hourHand.style.width ='20px';
+  hourHand.style.height ='150px';
+  hourHand.style.left ='0';
+  hourHand.style.right ='0';
+  hourHand.style.top ='-110px';
+  hourHand.style.bottom ='0';
+  hourHand.style.borderRadius ='20px';
+  hourHand.zIndex ='0';
 
-var hourHand = document.createElement('div');
-hourHand.className = "hour";
-hourHand.style.position ='absolute';
-hourHand.style.background ='#DAA520';
-hourHand.style.width ='20px';
-hourHand.style.height ='150px';
-hourHand.style.left ='0';
-hourHand.style.right ='0';
-hourHand.style.top ='-110px';
-hourHand.style.bottom ='0';
-hourHand.style.borderRadius ='20px';
-hourHand.zIndex ='0';
+  center.appendChild(hourHand);
 
-center.appendChild(hourHand);
+  var minuteHand = document.createElement('div');
+  minuteHand.className = "minute";
+  minuteHand.style.position ='absolute';
+  minuteHand.style.background ='#66CDAA';
+  minuteHand.style.width ='15px';
+  minuteHand.style.height ='180px';
+  minuteHand.style.left ='0';
+  minuteHand.style.top ='-140px';
+  minuteHand.zIndex ='1';
+  minuteHand.style.borderRadius ='20px';
+  center.appendChild(minuteHand);
 
-var minuteHand = document.createElement('div');
-minuteHand.className = "minute";
-minuteHand.style.position ='absolute';
-minuteHand.style.background ='#66CDAA';
-minuteHand.style.width ='15px';
-minuteHand.style.height ='180px';
-minuteHand.style.left ='0';
-minuteHand.style.top ='-140px';
-minuteHand.zIndex ='1';
-minuteHand.style.borderRadius ='20px';
-center.appendChild(minuteHand);
+  var secondHand = document.createElement('div');
+  secondHand.className = "second";
+  secondHand.style.position ='absolute';
+  secondHand.style.background ='#B0C4DE';
+  secondHand.style.width ='10px';
+  secondHand.style.height ='180px';
+  secondHand.style.left ='5px';
+  secondHand.style.top ='-140px';
+  secondHand.zIndex ='2';
+  secondHand.style.borderRadius ='20px';
+  center.appendChild(secondHand);
 
-var secondHand = document.createElement('div');
-secondHand.className = "second";
-secondHand.style.position ='absolute';
-secondHand.style.background ='#B0C4DE';
-secondHand.style.width ='10px';
-secondHand.style.height ='180px';
-secondHand.style.left ='5px';
-secondHand.style.top ='-140px';
-secondHand.zIndex ='2';
-secondHand.style.borderRadius ='20px';
-center.appendChild(secondHand);
+}
 
-
+createClock();
 
 function positionDial() {
   for (var i = 1 ; i < 13; i++) {
@@ -99,33 +101,6 @@ function positionDial() {
 }
 positionDial();
 
-// function seInt (){
-//   setInterval(fSec, 1000);
-//
-//   var sec = 0;
-//   var min = 0;
-//   var hour = 0;
-//
-//   function fSec(){
-//     sec = sec + 6;
-//     document.querySelector('.second').style.transform = 'rotate('+ sec + 'deg)';
-//     document.querySelector('.minute').style.transform = 'rotate('+ min + 'deg)';
-//     document.querySelector('.hour').style.transform = 'rotate('+ hour + 'deg)';
-//     document.querySelector('.second').style.transformOrigin = '100% 90%';
-//     document.querySelector('.minute').style.transformOrigin = '100% 95%';
-//     document.querySelector('.hour').style.transformOrigin = '100% 90%';
-//     if (sec + 6  === 366) {
-//       sec = 0;
-//       min = min + 6;
-//     } else if (min + 6 === 366) {
-//       min = 0;
-//       hour = hour + 6;
-//     }
-//   }
-// }
-//
-// seInt();
-
 function timeSet() {
   var time = new Date();
 
@@ -133,17 +108,17 @@ function timeSet() {
   var min = time.getMinutes();
   var hour = time.getHours();
 
-  var secondsDegrees = ((sec / 60) * 360) + 270;
-  var minuteDegrees = ((min * 60 + sec) / 3600) * 360 + 270;
-  var hourDegrees = ((hour * 3600 + min * 60 + sec) / 43200) * 360 + 270;
+  var seconds = ((sec / 60) * 360) + 270;
+  var minutes = ((min * 60 + sec) / 3600) * 360 + 270;
+  var hourses = ((hour * 3600 + min * 60 + sec) / 43200) * 360 + 270;
 
   document.querySelector('.second').style.transformOrigin = '100% 90%';
   document.querySelector('.minute').style.transformOrigin = '100% 95%';
   document.querySelector('.hour').style.transformOrigin = '100% 90%';
 
-  secondHand.style.transform = 'rotate(' + secondsDegrees + 'deg)';
-  minuteHand.style.transform = 'rotate(' + minuteDegrees + 'deg)';
-  hourHand.style.transform = 'rotate(' + hourDegrees + 'deg)';
+  secondHand.style.transform = 'rotate(' + seconds + 'deg)';
+  minuteHand.style.transform = 'rotate(' + minutes + 'deg)';
+  hourHand.style.transform = 'rotate(' + hourses + 'deg)';
 }
 
 setInterval(timeSet, 1000);
