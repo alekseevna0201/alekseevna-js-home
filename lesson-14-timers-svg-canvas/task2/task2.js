@@ -8,11 +8,6 @@ let radius = 125;
 let angleValue = 0;
 let distanceOfDigits = 30;
 
-let digitalWatchText;
-let digitalWatchWidth = 90;
-let digitalWatchHeight = 25;
-let radiusForDigitalWatch = 70;
-
 let elemForArrowHoursHeight = 50;
 let elemForArrowHoursWidth = 9;
 
@@ -57,23 +52,6 @@ function bigWatch() {
   }
 }
 
-function digitalWatch() {
-  let time = new Date();
-  context.globalCompositeOperation = "source-over";
-  context.fillStyle = "#FFFF00";
-  context.beginPath();
-  context.fillRect(canvaSCenterX - digitalWatchWidth / 2, canvaSCenterY - radiusForDigitalWatch - digitalWatchHeight / 2, 100, 25);
-  context.fill();
-
-  context.fillStyle = "black";
-  digitalWatchText = time.toLocaleTimeString();
-  context.font = "normal normal 25px 'Times New Roman'";
-  context.textAlign = 'center';
-  context.textBaseline = 'middle';
-  context.fillText(digitalWatchText, canvaSCenterX, canvaSCenterY - radiusForDigitalWatch);
-  context.fill();
-}
-
 // стрелки
 function hoursArrow() {
   let time = new Date();
@@ -113,7 +91,6 @@ function secondsArrow() {
 
 function arrows() {
   bigWatch();
-  digitalWatch();
   hoursArrow();
   minutesArrow();
   secondsArrow();

@@ -3,6 +3,8 @@
 let SVGElem = document.getElementById("SVG");
 
 let circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+let baseRadius = 300;
+let circleRadius = 30;
 
 circle.setAttribute('cx', '300');
 circle.setAttribute('cy', '300');
@@ -33,9 +35,20 @@ function createClockCircles (clockWidth, clockFaceClone, radiusLittleCircle, w, 
     littleCircle.setAttribute('fill', '#808080');
     littleCircle.setAttribute('stroke', 'white');
     SVGElem.appendChild(littleCircle);
+    SVGElem.appendChild(createNumberCircle(x, y, i));
   }
 }
 createClockCircles(CLOCK_WIDTH, clockFaceClone, LITTLE_CIRCLE_W /2, LITTLE_CIRCLE_W, LITTLE_CIRCLE_H);
+
+function createNumberCircle(circleX, circleY, number) {
+  let numberText = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+  numberText.appendChild(document.createTextNode(number));
+  numberText.setAttribute('x', circleX);
+  numberText.setAttribute('y', circleY);
+  numberText.setAttribute('text-anchor', 'middle');
+  numberText.setAttribute('style', `font-size: ${circleRadius}px`);
+  return numberText;
+}
 
 let handHour = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
 
@@ -89,17 +102,28 @@ circlePoint.setAttribute('fill', 'black');
 circlePoint.setAttribute('stroke', 'white');
 SVGElem.appendChild(circlePoint);
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function tickTimer(){
+  let now = new Date();
+  let thisSecond = now.getSeconds();
+  let thisMinute = now.getMinutes();
+  let thisHour   = now.getHours();
+  updateWatch(thisHour, thisMinute, thisSecond);
+}
 
+function updateWatch(hour, minute, second){
+  let thisSecondRotate = (second / 60) * 360 - 90;
+  let thisMinuteRotate = (minute) / 60 * 360 - 90;
+  let thisHourRotate   = (hour + minute / 60) / 12 * 360 - 90;
+  rotateHandle('sec', thisSecondRotate );
+  rotateHandle('min', thisMinuteRotate);
+  rotateHandle('hour', thisHourRotate);
+}
 
+function rotateHandle(handle, degree){
+  let arrow = document.querySelector(`.${handle}`);
+  arrow.setAttribute('transform', `rotate(${degree} ${baseRadius} ${baseRadius})`);
+}
 
-
-
-
-
-
-
-
-
-
+setInterval(tickTimer, 1000);
