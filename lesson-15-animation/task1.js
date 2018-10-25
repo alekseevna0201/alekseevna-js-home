@@ -97,31 +97,43 @@ let dist = field.offsetHeight/2 + racket1.racket.height/2 + 'px';
 racket1.racket.style.top = dist;
 racket2.racket.style.top = dist;
 
-// УПРАВЛЕНИЕ РАКЕТКАМИ
+// управление ракетками
+
+let keys = { // какие клавиши нужны
+  shift: 16,
+  ctrl: 17,
+  up: 38,
+  down: 40
+};
+
 window.addEventListener("keydown", byKey);
 
 function byKey(event) {
+  event = event || window.event;
+
   // Перемещение ракетки 1
-  if (event.keyCode === '16'){	 //двигается вверх по Shift
+
+  if (event.keyCode === keys.shift){ //двигается вверх по shift
     racket1.racket.style.top = parseInt(racket1.racket.offsetTop) - 10 + 'px';
-    if (parseInt(racket1.rocket.style.top) <= 0) { //если достиг конца поля, то отменяет обработчик
+    if (parseInt(racket1.racket.style.top) <= 0) { //если достиг конца поля, то отменяет обработчик
       racket1.racket.style.top = 0;
     }
   }
-  else if (event.keyCode === '17'){ 	//двигается вниз по Ctrl
+  else if (event.keyCode === keys.ctrl){ //двигается вниз по ctrl
     racket1.racket.style.top = parseInt(racket1.racket.offsetTop) + 10 + 'px';
     if ((parseInt(racket1.racket.offsetTop)+parseInt(racket1.racket.offsetHeight)) >=  parseInt(field.offsetHeight)) { //если достиг конца поля, то отменяет обработчик
       racket1.racket.style.top = field.offsetHeight - racket1.racket.offsetHeight+ 'px';
     }
   }
+
   // Перемещение ракетки 2
-  if (event.keyCode === '38'){ //двигается вверх по стрелке
+  if (event.keyCode === keys.up){ //двигается вверх по стрелке
     racket2.racket.style.top = parseInt(racket2.racket.offsetTop) - 10 + 'px';
     if (parseInt(racket2.racket.style.top) <= 0) { //если достиг конца поля, то отменяет обработчик
       racket2.racket.style.top = 0;
     }
   }
-  else if (event.keyCode === '40'){ //двигается вниз по стрелке
+  else if (event.keyCode === keys.down){ //двигается вниз по стрелке
     racket2.racket.style.top = parseInt(racket2.racket.offsetTop) + 10 + 'px';
     if ((parseInt(racket2.racket.offsetTop)+parseInt(racket2.racket.offsetHeight)) >=  parseInt(field.offsetHeight)) { //если достиг конца поля, то отменяет обработчик
       racket2.racket.style.top = field.offsetHeight - racket2.racket.offsetHeight+ 'px';
@@ -145,7 +157,8 @@ function ballMoove() {
 
 //Если мяч коснулся r1
     let centerBall = parseInt(ball.offsetHeight)/2;
-    if (ball.offsetLeft <= racket1.racket.offsetWidth && (ball.offsetTop + centerBall) > racket1.racket.offsetTop && (racket1.racket.offsetTop + racket1.racket.offsetHeight > parseInt(ball.offsetTop) + centerBall)){
+    if (ball.offsetLeft <= racket1.racket.offsetWidth && (ball.offsetTop + centerBall) > racket1.racket.offsetTop &&
+      (racket1.racket.offsetTop + racket1.racket.offsetHeight > parseInt(ball.offsetTop) + centerBall)){
       ball.speedBallX = - ball.speedBallX;
     }
 
@@ -156,7 +169,8 @@ function ballMoove() {
     score.innerHTML = score1 + ':' + score2;
     clearInterval(clickTimer);
   }
-  if (parseInt(ball.offsetLeft+ball.offsetWidth) > parseInt(field.offsetWidth)-parseInt(racket2.racket.offsetWidth)&&(ball.offsetTop + centerBall) > racket2.racket.offsetTop && (racket2.racket.offsetTop + racket2.racket.offsetHeight > parseInt(ball.offsetTop) + centerBall)){
+  if (parseInt(ball.offsetLeft + ball.offsetWidth) > parseInt(field.offsetWidth) - parseInt(racket2.racket.offsetWidth)
+    &&(ball.offsetTop + centerBall) > racket2.racket.offsetTop && (racket2.racket.offsetTop + racket2.racket.offsetHeight > parseInt(ball.offsetTop) + centerBall)){
     ball.speedBallX = - ball.speedBallX;
   }
 
@@ -165,8 +179,7 @@ function ballMoove() {
     ball.speedBallY = - ball.speedBallY;
   }
 
-  //Если мяч коснулся r2
-  if (parseInt(ball.offsetTop+ball.offsetHeight) >  parseInt(field.offsetHeight)) {
+  if (parseInt(ball.offsetTop + ball.offsetHeight) >  parseInt(field.offsetHeight)) {
     ball.speedBallY = - ball.speedBallY;
     ball.style.top = parseInt(field.offsetHeight) - parseInt(ball.offsetHeight) + 'px';
   }
