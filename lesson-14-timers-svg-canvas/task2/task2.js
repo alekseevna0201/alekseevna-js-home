@@ -2,24 +2,24 @@
 
 let canvaS = document.getElementById('wrapper');
 let context = canvaS.getContext("2d");
-let canvaSCenterX = canvaS.offsetWidth / 2;
-let canvaSCenterY = canvaS.offsetHeight / 2;
-let radius = 125;
-let angleValue = 0;
-let distanceOfDigits = 30;
+let canvaSCenterX = canvaS.offsetWidth / 2; // центр канваса по оси х
+let canvaSCenterY = canvaS.offsetHeight / 2; // аналогично по оси у
+let radius = 125; // радиус часов
+let angleValue = 0; // начальное значение угла
+let distanceOfDigits = 30; // значение угла между цифрами часов
 
-let elemForArrowHoursHeight = 50;
-let elemForArrowHoursWidth = 9;
+let elemForArrowHoursHeight = 50; // длина стрелки часов
+let elemForArrowHoursWidth = 9; // ширина часовой стрелки
 
-let elemForArrowMinutesHeight = 110;
-let elemForArrowMinutesWidth = 5;
+let elemForArrowMinutesHeight = 110; //длина минутной стрелки
+let elemForArrowMinutesWidth = 5;// ширина минутной стрелки
 
-let elemForArrowSecondsHeight = 135;
-let elemForArrowSecondsWidth = 2;
-let hoursDeg;
-let minutesDeg;
-let secondsDeg;
-let hourDigits = 12;
+let elemForArrowSecondsHeight = 135;// тдлина секундной стрелки
+let elemForArrowSecondsWidth = 2;// ширина секундной стрелки
+let hoursDeg; //угол поворота часовой
+let minutesDeg;//угол минутной
+let secondsDeg;//угол секундной
+let hourDigits = 12;//количество часов в часах
 
 // канвас
 function bigWatch() {
@@ -28,28 +28,32 @@ function bigWatch() {
   context.arc(canvaSCenterX, canvaSCenterY, 150, 0, Math.PI * 2, false);
   context.fill();
 
-  for (let i = 1; i <= hourDigits; i++) {
-    let smallCircleCX, smallCircleCY;
-    let smallCircleRadius = 20;
-    let angle;
+  function createCircles() {
+    for (let i = 1; i <= hourDigits; i++) {
+      let smallCircleCX, smallCircleCY;
+      let smallCircleRadius = 20;
+      let angle;
 
-    angleValue += distanceOfDigits;
-    angle = angleValue / 180 * Math.PI;
+      angleValue += distanceOfDigits;
+      angle = angleValue / 180 * Math.PI;
 
-    smallCircleCX = Math.round(canvaSCenterX + radius * Math.sin(angle));
-    smallCircleCY = Math.round(canvaSCenterY - radius * Math.cos(angle));
+      smallCircleCX = Math.round(canvaSCenterX + radius * Math.sin(angle));
+      smallCircleCY = Math.round(canvaSCenterY - radius * Math.cos(angle));
 
-    context.beginPath();
-    context.fillStyle = "#DAA520";
-    context.arc(smallCircleCX, smallCircleCY, smallCircleRadius, 0, Math.PI * 2);
-    context.fill();
+      context.beginPath();
+      context.fillStyle = "#DAA520";
+      context.arc(smallCircleCX, smallCircleCY, smallCircleRadius, 0, Math.PI * 2);
+      context.fill();
 
-    context.fillStyle = '#556B2F';
-    context.font = "normal normal 20px 'Times New Roman'";
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText(i, smallCircleCX, smallCircleCY);
+      context.fillStyle = '#556B2F';
+      context.font = "normal normal 20px 'Times New Roman'";
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(i, smallCircleCX, smallCircleCY);
+    }
   }
+
+  createCircles();
 }
 
 // стрелки
