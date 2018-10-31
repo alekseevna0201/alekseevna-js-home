@@ -1,112 +1,53 @@
-var DragManager = new function() {
-  var dragObject = {};
-  var self = this;
+'use strict';
 
-  function onMouseDown(EO) {
-    EO = EO || window.event;
-    var elem = EO.target.closest('img');
-    dragObject.elem = elem;
+let OffsetX;
+let OffsetY;
 
-    // запомним, что элемент нажат на текущих координатах pageX/pageY
-    dragObject.downX = EO.pageX;
-    dragObject.downY = EO.pageY;
+const imgs = document.getElementsByTagName('img');
 
-    return false;
-  }
+for (let i = imgs.length - 1; i > -1; i--) {
+  const initialLeft = imgs[i].offsetLeft;
+  const initialTop = imgs[i].offsetTop;
+  imgs[i].style.position = 'absolute';
+  imgs[i].style.left = initialLeft + 'px';
+  imgs[i].style.top = initialTop + 'px';
+  imgs[i].addEventListener('mousedown', OnMouseDown, false);
+}
 
-  function onMouseMove(EO) {
+function OnMouseDown(event) {
+  const EO = event || window.event;
+  EO.preventDefault();
 
-    if (!dragObject.avatar) {
+  const target = EO.target;
 
-      // начинаем перенос
-      dragObject.avatar = createAvatar(EO); // создать аватар
-      if (!dragObject.avatar) { // отмена переноса, нельзя "захватить" за эту часть элемента
-        dragObject = {};
-        return;
-      }
+  const mouseX = EO.pageX;
+  const mouseY = EO.pageY;
 
-      //вспомогательные свойства shiftX/shiftY
-      var coord = getCoord(dragObject.avatar);
-      dragObject.shiftX = dragObject.downX - coord.left;
-      dragObject.shiftY = dragObject.downY - coord.top;
+  OffsetX = mouseX - target.offsetLeft;
+  OffsetY = mouseY - target.offsetTop;
 
-      Drag_Start(EO);
-    }
+  window.addEventListener('mousemove', OnMouseMove, false);
+  window.addEventListener('mouseup', OnMouseUp, false);
+  window.addEventListener('mouseout', OnMouseUp, false);
+}
 
-    // отобразить перенос объекта при каждом движении мыши
-    dragObject.avatar.style.left = EO.pageX - dragObject.shiftX + 'px';
-    dragObject.avatar.style.top = EO.pageY - dragObject.shiftY + 'px';
+function OnMouseMove(event) {
+  const EO = event || window.event;
+  EO.preventDefault();
 
-    return false;
-  }
+  const target = EO.target;
+  target.style.zIndex = 999;
+  target.style.left = EO.pageX - OffsetX + 'px';
+  target.style.top = EO.pageY - OffsetY + 'px';
+}
 
-  function onMouseUp(EO) {
-    if (dragObject.avatar) { // если перенос идет
-      Drag_Stop(EO);
-    }
+function OnMouseUp(event) {
+  const EO = event || window.event;
+  EO.preventDefault();
 
-    dragObject = {};
-  }
-
-  function Drag_Stop(EO) {
-    var dropElem = findDroppable(EO);
-
-    if (!dropElem) {
-      self.onDragCancel(dragObject);
-    } else {
-      self.onDragEnd(dragObject, dropElem);
-    }
-  }
-
-  function createAvatar(EO) {
-
-    // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
-    var avatar = dragObject.elem;
-    var old = {
-      position: avatar.position,
-      left: avatar.left ,
-      top: avatar.top,
-      zIndex: avatar.zIndex
-    };
-
-    // отмена переноса
-    avatar.rollback = function() {
-      avatar.style.position = old.position;
-      avatar.style.left = old.left;
-      avatar.style.top = old.top;
-      avatar.style.zIndex = old.zIndex
-    };
-
-    return avatar;
-  }
-
-  function  Drag_Start(EO) {
-    var avatar = dragObject.avatar;
-
-    // инициировать начало переноса
-    document.body.appendChild(avatar);
-    avatar.style.zIndex = 9999;
-    avatar.style.position = 'absolute';
-  }
-
-  function findDroppable(event) {
-    var elem = document.elementFromPoint(event.clientX, event.clientY);
-    return elem.closest('img');
-  }
-
-  document.onmousemove = onMouseMove;
-  document.onmouseup = onMouseUp;
-  document.onmousedown = onMouseDown;
-
-  this.onDragEnd = function(dragObject, dropElem) {};
-  this.onDragCancel = function(dragObject) {};
-};
-
-function getCoord(elem) {
-  var box = elem.getBoundingClientRect();
-
-  return {
-    top: box.top + pageYOffset,
-    left: box.left + pageXOffset
-  };
+  const target = EO.target;
+  target.style.zIndex = 1;
+  window.removeEventListener('mousemove', OnMouseMove, false);
+  window.removeEventListener('mouseup', OnMouseUp, false);
+  window.removeEventListener('mouseout', OnMouseUp, false);
 }
