@@ -4,15 +4,12 @@ function tLocalStorage (nameStorage) {
   var self = this;
     self.pLocal = {};
 
-  if (localStorage.getItem(lsKeyName)) {
-    if (lsKeyName === "lsDish") {
-      var myObject = JSON.parse(localStorage.lsDish);
-      self.pLocal = myObject;
-    }
-    if (lsKeyName === "lsDrink") {
-      myObject = JSON.parse(localStorage.lsDrink);
-      self.pLocal = myObject;
-    }
+  function reset() {
+    pLocal = JSON.parse(localStorage[nameStorage]);
+  }
+
+  function saveHash() {
+    localStorage[name] = JSON.stringify(pLocal);
   }
 
   self.addValue = function(key, value) {
@@ -24,7 +21,9 @@ function tLocalStorage (nameStorage) {
   };
 
   self.deleteValue = function(key) {
-    return delete pLocal[key];
+    pLocal = JSON.parse(window.localStorage.getItem(value));
+    delete pLocal[key];
+    window.localStorage.setItem(value, JSON.stringify(pLocal));
   };
 
   self.getKeys = function() {
