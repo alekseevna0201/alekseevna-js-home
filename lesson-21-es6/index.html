@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>lesson-21-es6</title>
+  <script src='http://code.jquery.com/jquery-latest.js'></script>
+</head>
+<body>
+<div id="page"></div>
+
+<script>
+
+  const AjaxHandlerScript = "http://fe.it-academy.by/TestAjax2.php";
+
+  window.onhashchange = renderNewState;
+
+  function renderNewState() {
+    const hash = window.location.hash;
+    let state = decodeURIComponent(hash.substr(1));
+
+    if (state === '') {
+      state = {page: 'first'};
+    } else {
+      state = JSON.parse(state);
+    }
+
+    let page = '';
+
+    switch (state.page) {
+      case 'first':
+        page += '<h4>Энциклопедия</h4>' +
+          '<a href="http://localhost:63342/home-js/alekseevna-js-home/lesson-21-es6/index.html?_ijt=31kc49i93mle8pikr0fib16oro#%7B%22page%22%3A%22second%22%7D">Оглавление</a>';
+        break;
+      case 'second':
+        page += '<h4>Оглавление</h4>';
+        $.ajax(AjaxHandlerScript, {
+          type: 'GET',
+          dataType: 'json',
+          data: {func: 'COURSES_JSON'},
+          success: linksList,
+          error: errorHandler
+        });
+        break;
+      case 'third':
+        page += '<h4>Название статьи</h4>';
+        $.ajax(AjaxHandlerScript, {
+          type: 'GET',
+          dataType: 'html',
+          data: {func: 'COURSE_INFO', id: id},
+          success: info,
+          error: errorHandler
+        });
+        break;
+    }
+    document.getElementById('page').innerHTML = page;
+  }
+
+  function switchToState(state) {
+    location.hash = encodeURIComponent(JSON.stringify(state));
+  }
+
+  function switchToFirst() {
+    switchToState({page: 'first'});
+  }
+
+  function switchToSecond() {
+    switchToState({page: 'second'});
+  }
+
+  function switchToThird() {
+    switchToState({page: 'third'});
+  }
+
+  renderNewState();
+
+  //////////////////////////////////
+  function linksList() {
+    let page = '';
+    page += '<h1>Оглавление</h1>';
+    let obj = {};
+    data.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    })}
+
+
+  data.forEach(elem => {
+    let name = elem.name;
+    let firstLetter = name.charAt(0).toUpperCase();
+    if (!obj[firstLetter]) {
+      obj[firstLetter] = 1;
+      page += `<h2>${firstLetter}</h2>`;
+      page += `<a href="#item-${elem.id}">${name}</a><br>`;
+    } else {
+      page += `<a href="#item-${elem.id}">${name}</a><br>`;
+    }
+  });
+  coursesArray = data;
+  document.getElementById('page').innerHTML = page;
+
+
+    function info() {
+      let page = '';
+      page += '<div>';
+      for (let i = 0; i < 5; i++) {
+        page += `<a href="#item-${coursesArray[i].id}">${coursesArray[i].name}</a><br>`;
+      }
+      page += '</div>';
+      page += `<div>
+              <h4>Название статьи</h4>
+              <p>${data}</p>
+          </div>`;
+      document.getElementById('page').innerHTML = page;
+    }
+
+    function errorHandler() {
+      let page = '';
+      page += '<h3>произошла ошибка!!!</h3>';
+      document.getElementById('page').innerHTML = page;
+      console.log(StatusStr + ' ' + ErrorStr);
+    }
+
+</script>
+
+<input type="button" value="First" onclick="switchToFirst()">
+<input type="button" value="Second" onclick="switchToSecond()">
+<input type="button" value="Third" onclick="switchToThird()">
+</body>
+</html>
